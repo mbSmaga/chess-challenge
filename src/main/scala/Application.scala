@@ -2,30 +2,26 @@
  * Created by mbsmaga on 28.04.15.
  */
 object Application extends App{
-  def queens(n: Int): Set[List[Int]] = {
-    def placeQueens(k: Int): Set[List[Int]] = {
-      if (k == 0) Set(List())
+  def queens(boardSize: Int): Set[List[(Int, Int)]] = {
+    def placeQueens(currentQueen: Int): Set[List[(Int, Int)]] = {
+      if (currentQueen == 0) Set(List())
       else
         for {
-          queens <- placeQueens(k - 1)
-          col <- 0 until n
-          if isSafe(col, queens)
-        } yield col :: queens
+          queens <- placeQueens(currentQueen - 1)
+          column <- 0 until boardSize
+          row <- 0 until boardSize
+          if (isSafe((row, column), queens))
+        } yield ((row, column) :: queens).sortBy(r => (r._1, r._2))
     }
-    placeQueens(n)
+    placeQueens(boardSize)
   }
-  def isSafe(col: Int, queens: List[Int]): Boolean = {
-    val row = queens.length
-    val queensWithRow = (row - 1 to 0 by -1) zip queens
-    queensWithRow forall {
-      case (r, c) => col != c && math.abs(col - c) != row - r
+  def isSafe(pair: (Int, Int), queens: List[(Int, Int)]): Boolean = {
+    queens forall {
+      case (r, c) => pair._2 != c && pair._1 != r && math.abs(pair._2 - c) != math.abs(pair._1 - r)
     }
   }
   def show(queens: List[Int]) = {
-    val lines =
-      for (col <- queens.reverse)
-        yield Vector.fill(queens.length)("* ").updated(col, "X ").mkString
-    "\n" + (lines mkString "\n")
+    //TODO: Implement this method
   }
   println(queens(8).size)
 }
