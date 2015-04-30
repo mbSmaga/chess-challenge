@@ -2,26 +2,32 @@
  * Created by mbsmaga on 28.04.15.
  */
 object Application extends App{
-  def queens(boardSize: Int): Set[List[(Int, Int)]] = {
-    def placeQueens(currentQueen: Int): Set[List[(Int, Int)]] = {
-      if (currentQueen == 0) Set(List())
-      else
-        for {
-          queens <- placeQueens(currentQueen - 1)
-          column <- 0 until boardSize
-          row <- 0 until boardSize
-          if (isSafe((row, column), queens))
-        } yield ((row, column) :: queens).sortBy(r => (r._1, r._2))
+
+  val columns = 7
+  val rows = 7
+
+  def cyclePieces(pieces: List[Char]): Set[Vector[Piece]] = {
+    if (pieces.isEmpty) {
+      Set(Vector())
     }
-    placeQueens(boardSize)
-  }
-  def isSafe(pair: (Int, Int), queens: List[(Int, Int)]): Boolean = {
-    queens forall {
-      case (r, c) => pair._2 != c && pair._1 != r && math.abs(pair._2 - c) != math.abs(pair._1 - r)
+    else {
+      for {
+        placedPieces <- cyclePieces(pieces.tail)
+        x <- 0 until columns
+        y <- 0 until rows
+        piece = PieceFactory(pieces.head, (x, y))
+        if isValidPosition(piece, placedPieces)
+      } yield (piece +: placedPieces).sortBy(p => (p.currentPosition._1, p.currentPosition._2))
     }
   }
-  def show(queens: List[Int]) = {
-    //TODO: Implement this method
+
+  def isValidPosition(curPiece: Piece, pieces: Vector[Piece]) = {
+    pieces forall {
+      piece => !(piece.isLocationSafe(curPiece.currentPosition)) && !(curPiece.isLocationSafe(piece.currentPosition))
+    }
   }
-  println(queens(8).size)
+
+  val result = cyclePieces(List('Z', 'K', 'K', 'B', 'B', 'Q', 'Q'))
+
+  println(result.size)
 }
