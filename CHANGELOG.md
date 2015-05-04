@@ -1,3 +1,16 @@
+> ## [v1.0](https://github.com/mbSmaga/chess-challenge/tree/v1.0) (2015-04-29)
+> 
+> 
+> **Implemented enhancements:**
+> 
+> - Switch some collections for better performance (eg. Set to SetList, IndexedSeq to List)
+> - Moved basic functionality to separated class named ChessBoard
+> - Fixed rooks validation
+> - Removed redundant validiation
+> - Added comments
+>
+
+
 > ## [v0.3.1](https://github.com/mbSmaga/chess-challenge/tree/v0.3) (2015-04-29)
 > 
 > 
@@ -8,7 +21,6 @@
 > **Bugs:**
 > 
 > - It takes 20-25s to get the results
-
 
 > ## [v0.3](https://github.com/mbSmaga/chess-challenge/tree/v0.3) (2015-04-29)
 > 
