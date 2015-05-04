@@ -40,6 +40,7 @@ class Knight(currentPosition: (Int, Int)) extends Piece('N', currentPosition) {
   override def checkLocation(step: (Int, Int)) =
     (step._1 == 1 && step._2 == 2) || (step._1 == 2 && step._2 == 1)
 }
+
 object PieceFactory {
   def apply(name: Char, position: (Int, Int)) = {
     name match {
