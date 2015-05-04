@@ -1,4 +1,4 @@
-> ## [v1.0](https://github.com/mbSmaga/chess-challenge/tree/v1.0) (2015-04-29)
+> ## [v1.0](https://github.com/mbSmaga/chess-challenge/tree/v1.0) (2015-05-04)
 > 
 > 
 > **Implemented enhancements:**
