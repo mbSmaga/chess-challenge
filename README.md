@@ -4,6 +4,16 @@ This is my implementation of the Chess Challenge. The task is to find all unique
 
 ### Installation and usage
 
+Get the source code from this repository:
 ```
-nothing here yet...
+git clone https://github.com/mbSmaga/chess-challenge.git
+```
+Run the code using sbt:
+```
+sbt run
+```
+
+Tested with default SBT_OPTS
+```
+SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 ```
