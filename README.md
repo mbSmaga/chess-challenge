@@ -8,7 +8,7 @@ Get the source code from this repository:
 ```
 git clone https://github.com/mbSmaga/chess-challenge.git
 ```
-Run with default SBT_OPTS
+Use default SBT_OPTS
 ```
 SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 ```
